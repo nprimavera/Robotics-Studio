@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import math
 from lx16a import *
 import time
 from math import sin, cos
@@ -108,47 +109,59 @@ except ServoTimeoutError as e:
 except ServoChecksumError as e:
     print(f"The program received a bad checksum")
 
-# Take step forward
+# Take step forward - using sin and cos waves (good --> smooth)
 print("Beginning forward motion")
 
-# Define step parameters
-step_duration = 0.1  # duration of each step in seconds
-step_height = 30     # height of the step in degrees
-t = 0                # initial time
+try: 
+    # Define Central Pattern Generator (CPG) parameters for each servo
+    initial_angles = [145.68, 115.92, 141.84, 155.52, 114.52, 172.08, 130.56, 122.16]    # Initial angles 
+    amplitudes = [20, 15, 20, 15, 20, 15, 20, 15]                                        # Amplitude of oscillation
+    phase_offsets = [0, math.pi, 0, math.pi, 0, math.pi, 0, math.pi]                     # Phase offset in radians
+    angular_frequency = 2 * math.pi / 1                                                  # Complete a cycle every 1 second
 
-# Take step - using triangle waves (bad --> avoid abrupt velocity changes --> sharp corners)
-try:
-    for _ in range(3):
-        servo1.move(145.68 + step_height, 100)  
-        servo2.move(115.92 + step_height, 100)
-        servo5.move(114.52 + step_height, 100)
-        servo6.move(172.08 - step_height, 100)
-        time.sleep(0.05)
-        servo3.move(141.84 + step_height, 100)
-        servo4.move(155.52 + step_height, 100)
-        servo7.move(130.56 - step_height, 100)
-        servo8.move(122.16 - step_height, 100)
-        time.sleep(0.05)
-        servo1.move(145.68 - step_height, 100)  
-        servo2.move(115.92 - step_height, 100)
-        servo5.move(114.52 - step_height, 100)
-        servo6.move(172.08 + step_height, 100)
-        time.sleep(0.05)
-        servo3.move(141.84 - step_height, 100)
-        servo4.move(155.52 - step_height, 100)
-        servo7.move(130.56 + step_height, 100)
-        servo8.move(122.16 + step_height, 100)
-        time.sleep(0.05)
-    # Set servos back to home 
-    servo1.move(145.68, 100)    
-    servo2.move(115.92, 100)
-    servo3.move(141.84, 100)
-    servo4.move(155.52, 100)
-    servo5.move(114.52, 100)
-    servo6.move(172.08, 100)
-    servo7.move(130.56, 100)
-    servo8.move(122.16, 100)
-    time.sleep(0.1)
+    # Start motion
+    start_time = time.time()    # sets the start time = current timestamp 
+    duration = 5.0              # run the motion for 5 seconds
+
+    while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
+        current_time = time.time() - start_time     # current time = time stamp - start time 
+        servo1_angle = 146.68 + 20 * math.sin((2 * math.pi / 1) * current_time + 0)
+        servo1.move(servo1_angle, time=100)
+        print(f"Servo 1 is at {servo1_angle}. degrees")
+        servo2_angle = 115.92 + 15 * math.sin((2 * math.pi / 1) * current_time + math.pi)
+        servo2.move(servo2_angle, time=100)
+        print(f"Servo 2 is at {servo2_angle}. degrees")
+        servo5_angle = 114.52 + 20 * math.sin((2 * math.pi / 1) * current_time + 0)
+        servo5.move(servo5_angle, time=100)
+        print(f"Servo 5 is at {servo5_angle}.")
+        servo6_angle = 172.08 - 15 * math.sin((2 * math.pi / 1) * current_time + math.pi)
+        servo6.move(servo6_angle, time=100)
+        print(f"Servo 6 is at {servo6_angle}.")
+        time.sleep(0.1)
+        servo3_angle = 141.84 + 20 * math.sin((2 * math.pi / 1) * current_time + 0)
+        servo3.move(servo3_angle, time=100)
+        print(f"Servo 3 is at {servo3_angle} degrees.")
+        servo4_angle = 155.52 + 15 * math.sin((2 * math.pi / 1) * current_time + math.pi)
+        servo4.move(servo4_angle, time=100)
+        print(f"Servo 4 is at {servo4_angle}.")
+        servo7_angle = 130.56 - 20 * math.sin((2 * math.pi / 1) * current_time + 0)
+        servo7.move(servo7_angle, time=100)
+        print(f"Servo 7 is at {servo7_angle}.")
+        servo8_angle = 122.16 - 15 * math.sin((2 * math.pi / 1) * current_time + math.pi)
+        servo8.move(servo8_angle, time=100)
+        print(f"Servo 8 is at {servo8_angle}.")
+        time.sleep(0.1)                
+
+    # Set servos back to home position
+        servo1.move(145.68, 100)    
+        servo2.move(115.92, 100)
+        servo3.move(141.84, 100)
+        servo4.move(155.52, 100)
+        servo5.move(114.52, 100)
+        servo6.move(172.08, 100)
+        servo7.move(130.56, 100)
+        servo8.move(122.16, 100)
+        time.sleep(0.1)
 except ServoArgumentError as e:
     print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
 except ServoLogicalError as e:
