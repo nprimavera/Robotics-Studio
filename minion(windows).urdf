@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<robot name="myrobot">
+    <link name="base">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\base.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\base.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <link name="front_hip">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\front_hip.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\front_hip.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_to_front_hip" type="revolute">
+        <parent link="base"/>
+        <child link="front_hip"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="front_thigh">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\front_thigh.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\front_thigh.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="front_hip_to_front_thigh" type="revolute">
+        <parent link="front_hip"/>
+        <child link="front_thigh"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="front_ankle">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\front_ankle.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\front_ankle.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="front_thigh_to_front_ankle" type="revolute">
+        <parent link="front_thigh"/>
+        <child link="front_ankle"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="left_hip">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\left_hip.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\left_hip.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_to_left_hip" type="revolute">
+        <parent link="base"/>
+        <child link="left_hip"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="left_thigh">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\left_thigh.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\left_thigh.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_hip_to_left_thigh" type="revolute">
+        <parent link="left_hip"/>
+        <child link="left_thigh"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="left_ankle">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\left_ankle.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\left_ankle.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_thigh_to_left_ankle" type="revolute">
+        <parent link="left_thigh"/>
+        <child link="left_ankle"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="back_hip">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\back_hip.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\back_hip.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_to_back_hip" type="revolute">
+        <parent link="base"/>
+        <child link="back_hip"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="back_thigh">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\back_thigh.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\back_thigh.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="back_hip_to_back_thigh" type="revolute">
+        <parent link="back_hip"/>
+        <child link="back_thigh"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="back_ankle">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\back_ankle.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\back_ankle.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="back_thigh_to_back_ankle" type="revolute">
+        <parent link="back_thigh"/>
+        <child link="back_ankle"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="right_hip">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\right_hip.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\right_hip.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_to_right_hip" type="revolute">
+        <parent link="base"/>
+        <child link="right_hip"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="right_thigh">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\right_thigh.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\right_thigh.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_hip_to_right_thigh" type="revolute">
+        <parent link="right_hip"/>
+        <child link="right_thigh"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="right_ankle">
+        <visual>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\right_ankle.stl" scale="0.001 0.001 0.001"/> <!-- scale factor to convert from mm to m -->
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:\Users\Welcome\Desktop\Version 0.06 (Simulation)\STL files to be imported into the simulation\right_ankle.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_thigh_to_right_ankle" type="revolute">
+        <parent link="right_thigh"/>
+        <child link="right_ankle"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+</robot>
