@@ -132,7 +132,7 @@ try:
         servo6_angle = 172.08 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
         servo6.move(servo6_angle, 100)
         print(f"Servo 6 is at {servo6_angle} degrees.\n")
-        time.sleep(0.25)
+        time.sleep(0.1)
         servo3_angle = 141.84 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
         servo3.move(servo3_angle, 100)
         print(f"Servo 3 is at {servo3_angle} degrees.\n")
@@ -145,7 +145,7 @@ try:
         servo8_angle = 122.16 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
         servo8.move(servo8_angle, 100)
         print(f"Servo 8 is at {servo8_angle} degrees.\n")
-        time.sleep(0.25)                
+        time.sleep(0.1)                
 except ServoArgumentError as e:
     print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
 except ServoLogicalError as e:
