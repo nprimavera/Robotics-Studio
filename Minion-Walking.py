@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
 import math
-from lx16a import *
 import time
-from math import sin, cos
+import speech_recognition as sr
+import pygame
+
+from lx16a import *
+from math import sin, cos, pi
 
 # Initializing the LX16A class
 #LX16A.initialize("/dev/cu.usbserial-110", 0.1)                   # initialize servo bus port - for MAC 
@@ -119,6 +122,7 @@ try:
 
     while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
         current_time = time.time() - start_time     # current time = time stamp - start time 
+        
         # Move front and back legs
         servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
         servo1.move(servo1_angle, 100)
@@ -133,6 +137,8 @@ try:
         servo6.move(servo6_angle, 100)
         print(f"Servo 6 is at {servo6_angle} degrees.\n")
         time.sleep(0.1)
+
+        # Move left and right legs 
         servo3_angle = 141.84 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
         servo3.move(servo3_angle, 100)
         print(f"Servo 3 is at {servo3_angle} degrees.\n")
@@ -168,3 +174,45 @@ except ServoLogicalError as e:
     print(f"The command is issued while in motor mode or while torque is disabled")
 
 print("Forward motion complete.\n")
+
+# Dictionary mapping keywords to audio files
+keyword_audio_mapping = {
+    "hello": "hello.wav",
+    "goodbye": "goodbye.wav",
+    # Add more keywords and corresponding audio files as needed
+}
+
+def play_audio(file_path):
+    pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+
+def recognize_speech():
+    recognizer = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening for keyword...")
+        recognizer.adjust_for_ambient_noise(source)
+        audio = recognizer.listen(source)
+
+    try:
+        # Recognize the spoken words
+        recognized_text = recognizer.recognize_google(audio).lower()
+        print("Recognized:", recognized_text)
+        # Check if the recognized text is a keyword
+        if recognized_text in keyword_audio_mapping:
+            audio_file = keyword_audio_mapping[recognized_text]
+            play_audio(audio_file)
+        else:
+            print("Keyword not recognized.")
+
+    except sr.UnknownValueError:
+        print("Could not understand audio")
+    except sr.RequestError as e:
+        print("Could not request results; {0}".format(e))
+
+if __name__ == "__main__":
+    while True:
+        recognize_speech()
