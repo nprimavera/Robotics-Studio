@@ -113,106 +113,127 @@ except ServoChecksumError as e:
     print(f"The program received a bad checksum")
 
 # Take step forward - using sin and cos waves (smooth motor motion)
-print("\nBeginning forward motion.\n")
+def forward_motion(servos):
+    print("\nBeginning forward motion.\n")
+    try: 
+        # Start motion
+        start_time = time.time()    # sets the start time = current timestamp 
+        duration = 5.0              # run the motion for 5 seconds
 
-try: 
-    # Start motion
-    start_time = time.time()    # sets the start time = current timestamp 
-    duration = 5.0              # run the motion for 5 seconds
+        while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
+            current_time = time.time() - start_time     # current time = time stamp - start time 
+            
+            # Move front and back legs
+            servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo1.move(servo1_angle, 100)
+            print(f"Servo 1 is at {servo1_angle} degrees.\n")
+            servo2_angle = 115.92 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo2.move(servo2_angle, 100)
+            print(f"Servo 2 is at {servo2_angle} degrees.\n")
+            servo5_angle = 114.52 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo5.move(servo5_angle, 100)
+            print(f"Servo 5 is at {servo5_angle} degrees.\n")
+            servo6_angle = 172.08 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo6.move(servo6_angle, 100)
+            print(f"Servo 6 is at {servo6_angle} degrees.\n")
+            time.sleep(0.1)
 
-    while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
-        current_time = time.time() - start_time     # current time = time stamp - start time 
-        
-        # Move front and back legs
-        servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo1.move(servo1_angle, 100)
-        print(f"Servo 1 is at {servo1_angle} degrees.\n")
-        servo2_angle = 115.92 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo2.move(servo2_angle, 100)
-        print(f"Servo 2 is at {servo2_angle} degrees.\n")
-        servo5_angle = 114.52 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo5.move(servo5_angle, 100)
-        print(f"Servo 5 is at {servo5_angle} degrees.\n")
-        servo6_angle = 172.08 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo6.move(servo6_angle, 100)
-        print(f"Servo 6 is at {servo6_angle} degrees.\n")
-        time.sleep(0.1)
+            # Move left and right legs 
+            servo3_angle = 141.84 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo3.move(servo3_angle, 100)
+            print(f"Servo 3 is at {servo3_angle} degrees.\n")
+            servo4_angle = 155.52 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo4.move(servo4_angle, 100)
+            print(f"Servo 4 is at {servo4_angle} degrees.\n")
+            servo7_angle = 130.56 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo7.move(servo7_angle, 100)
+            print(f"Servo 7 is at {servo7_angle} degrees.\n")
+            servo8_angle = 122.16 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo8.move(servo8_angle, 100)
+            print(f"Servo 8 is at {servo8_angle} degrees.\n")
+            time.sleep(0.1)                
+    except ServoArgumentError as e:
+        print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
+    except ServoLogicalError as e:
+        print(f"The command is issued while in motor mode or while torque is disabled")
 
-        # Move left and right legs 
-        servo3_angle = 141.84 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo3.move(servo3_angle, 100)
-        print(f"Servo 3 is at {servo3_angle} degrees.\n")
-        servo4_angle = 155.52 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo4.move(servo4_angle, 100)
-        print(f"Servo 4 is at {servo4_angle} degrees.\n")
-        servo7_angle = 130.56 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo7.move(servo7_angle, 100)
-        print(f"Servo 7 is at {servo7_angle} degrees.\n")
-        servo8_angle = 122.16 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-        servo8.move(servo8_angle, 100)
-        print(f"Servo 8 is at {servo8_angle} degrees.\n")
-        time.sleep(0.1)                
-except ServoArgumentError as e:
-    print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
-except ServoLogicalError as e:
-    print(f"The command is issued while in motor mode or while torque is disabled")
-
-# Set servos back home 
-try:
-    servo1.move(145.68, 100)   
-    servo2.move(115.92, 100)
-    servo3.move(141.84, 100)
-    servo4.move(155.52, 100)
-    servo5.move(114.52, 100)
-    servo6.move(172.08, 100)
-    servo7.move(130.56, 100)
-    servo8.move(122.16, 100)
-    time.sleep(1.0)
-except ServoArgumentError as e:
-    print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
-except ServoLogicalError as e:
-    print(f"The command is issued while in motor mode or while torque is disabled")
-
-print("Forward motion complete.\n")
-
-# Dictionary mapping keywords to audio files
-keyword_audio_mapping = {
-    "hello": "hello.wav",
-    "goodbye": "goodbye.wav",
-    # Add more keywords and corresponding audio files as needed
-}
-
-def play_audio(file_path):
-    pygame.init()
-    pygame.mixer.init()
-    pygame.mixer.music.load(file_path)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
-
-def recognize_speech():
-    recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Listening for keyword...")
-        recognizer.adjust_for_ambient_noise(source)
-        audio = recognizer.listen(source)
-
+    # Set servos back home 
     try:
-        # Recognize the spoken words
-        recognized_text = recognizer.recognize_google(audio).lower()
-        print("Recognized:", recognized_text)
-        # Check if the recognized text is a keyword
-        if recognized_text in keyword_audio_mapping:
-            audio_file = keyword_audio_mapping[recognized_text]
-            play_audio(audio_file)
-        else:
-            print("Keyword not recognized.")
+        servo1.move(145.68, 100)   
+        servo2.move(115.92, 100)
+        servo3.move(141.84, 100)
+        servo4.move(155.52, 100)
+        servo5.move(114.52, 100)
+        servo6.move(172.08, 100)
+        servo7.move(130.56, 100)
+        servo8.move(122.16, 100)
+        time.sleep(1.0)
+    except ServoArgumentError as e:
+        print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
+    except ServoLogicalError as e:
+        print(f"The command is issued while in motor mode or while torque is disabled")
+    print("Forward motion complete.\n")
+    time.sleep(3.0)
 
-    except sr.UnknownValueError:
-        print("Could not understand audio")
-    except sr.RequestError as e:
-        print("Could not request results; {0}".format(e))
+# Begin backwards motion
+def backwards_motion(servos):
+    print("Begin backwards motion.\n")
+    try: 
+        # Start motion
+        start_time = time.time()    # sets the start time = current timestamp 
+        duration = 5.0              # run the motion for 5 seconds
 
-if __name__ == "__main__":
-    while True:
-        recognize_speech()
+        while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
+            current_time = time.time() - start_time     # current time = time stamp - start time 
+            
+            # Move front and back legs
+            servo1_angle = 145.68 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo1.move(servo1_angle, 100)
+            print(f"Servo 1 is at {servo1_angle} degrees.\n")
+            servo2_angle = 115.92 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo2.move(servo2_angle, 100)
+            print(f"Servo 2 is at {servo2_angle} degrees.\n")
+            servo5_angle = 114.52 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo5.move(servo5_angle, 100)
+            print(f"Servo 5 is at {servo5_angle} degrees.\n")
+            servo6_angle = 172.08 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo6.move(servo6_angle, 100)
+            print(f"Servo 6 is at {servo6_angle} degrees.\n")
+            time.sleep(0.1)
+
+            # Move left and right legs 
+            servo3_angle = 141.84 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo3.move(servo3_angle, 100)
+            print(f"Servo 3 is at {servo3_angle} degrees.\n")
+            servo4_angle = 155.52 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo4.move(servo4_angle, 100)
+            print(f"Servo 4 is at {servo4_angle} degrees.\n")
+            servo7_angle = 130.56 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo7.move(servo7_angle, 100)
+            print(f"Servo 7 is at {servo7_angle} degrees.\n")
+            servo8_angle = 122.16 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            servo8.move(servo8_angle, 100)
+            print(f"Servo 8 is at {servo8_angle} degrees.\n")
+            time.sleep(0.1)                
+    except ServoArgumentError as e:
+        print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
+    except ServoLogicalError as e:
+        print(f"The command is issued while in motor mode or while torque is disabled")
+
+    # Set servos back home 
+    try:
+        servo1.move(145.68, 100)   
+        servo2.move(115.92, 100)
+        servo3.move(141.84, 100)
+        servo4.move(155.52, 100)
+        servo5.move(114.52, 100)
+        servo6.move(172.08, 100)
+        servo7.move(130.56, 100)
+        servo8.move(122.16, 100)
+        time.sleep(1.0)
+    except ServoArgumentError as e:
+        print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
+    except ServoLogicalError as e:
+        print(f"The command is issued while in motor mode or while torque is disabled")
+    print("Backward motion complete.\n")
+    time.sleep(3.0)
