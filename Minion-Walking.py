@@ -115,68 +115,67 @@ except ServoChecksumError as e:
 # Initialize pygame for audio output
 pygame.mixer.init()
 
-# Function to play audio
-def play_audio(audio_file):             # audio files need to be in the same directory as the python script 
-    pygame.mixer.music.load(audio_file)
+# Functions to play audio files
+def play_audio(file_name):             # audio files need to be in the same directory as the python script 
+    pygame.mixer.music.load(file_name)
     pygame.mixer.music.play()
 
 # Function to process voice commands
 def process_command(command):
     if "forward" in command:
         forward_motion()
-        play_audio("Minion whistle.m4a")
     elif "walk" in command:
         forward_motion()
-        play_audio("Minion whistle.m4a")
+    elif "step" in command:
+        forward_motion()
     elif "backward" in command:
         backward_motion()
-        play_audio("Minion YMCA.m4a")
     elif "hello" in command:
-        play_audio("Minion hello.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.m4a")
     elif "hi" in command:
-        play_audio("Minion hello.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.m4a")
     elif "greetings" in command:
-        play_audio("Minion hello.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.m4a")
     elif "banana" in command:
-        play_audio("Minion banana.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.m4a")
     elif "food" in command:
-        play_audio("Minion banana.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.m4a")
     elif "hungry" in command:
-        play_audio("Minion banana.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.m4a")
     elif "minion" in command:
-        play_audio("Minion Ta da.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.m4a")
     elif "bottom" in command:
-        play_audio("Minion bottom.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.m4a")
     elif "ass" in command:
-        play_audio("Minion bottom.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.m4a")
     elif "butt" in command:
-        play_audio("Minion bottom.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.m4a")
     elif "fart" in command:
-        play_audio("Minion farting.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.m4a")
     elif "smell" in command:
-        play_audio("Minion farting.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.m4a")
     elif "funny" in command:
-        play_audio("Minion laughter.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.m4a")
     elif "joke" in command:
-        play_audio("Minion laughter.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.m4a")
     elif "laughing" in command:
-        play_audio("Minion laughter.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.m4a")
     elif "sing" in command:
-        play_audio("Minion singing.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.m4a")
     elif "song" in command:
-        play_audio("Minion singing.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.m4a")
     elif "music" in command:
-        play_audio("Minion singing.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.m4a")
     elif "yay" in command:
-        play_audio("Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
     elif "yes" in command:
-        play_audio("Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
     elif "great" in command:
-        play_audio("Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
     elif "Gru" in command:
-        play_audio("Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
     elif "beedo" in command:
-        play_audio("Minion Noises 2.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Noises 2.m4a")
     else:
         print("Unknown command")
 
@@ -190,7 +189,8 @@ def forward_motion():
 
         while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
             current_time = time.time() - start_time     # current time = time stamp - start time 
-            
+            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion whistle.m4a")
+
             # Move front and back legs
             servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
             servo1.move(servo1_angle, 100)
@@ -253,7 +253,8 @@ def backward_motion():
 
         while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
             current_time = time.time() - start_time     # current time = time stamp - start time 
-            
+            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.m4a")
+
             # Move front and back legs
             servo1_angle = 145.68 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
             servo1.move(servo1_angle, 100)
