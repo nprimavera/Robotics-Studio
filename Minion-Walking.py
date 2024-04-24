@@ -112,8 +112,76 @@ except ServoTimeoutError as e:
 except ServoChecksumError as e:
     print(f"The program received a bad checksum")
 
-# Take step forward - using sin and cos waves (smooth motor motion)
-def forward_motion(servos):
+# Initialize pygame for audio output
+pygame.mixer.init()
+
+# Function to play audio
+def play_audio(audio_file):             # audio files need to be in the same directory as the python script 
+    pygame.mixer.music.load(audio_file)
+    pygame.mixer.music.play()
+
+# Function to process voice commands
+def process_command(command):
+    if "forward" in command:
+        forward_motion()
+        play_audio("Minion whistle.m4a")
+    elif "walk" in command:
+        forward_motion()
+        play_audio("Minion whistle.m4a")
+    elif "backward" in command:
+        backward_motion()
+        play_audio("Minion YMCA.m4a")
+    elif "hello" in command:
+        play_audio("Minion hello.m4a")
+    elif "hi" in command:
+        play_audio("Minion hello.m4a")
+    elif "greetings" in command:
+        play_audio("Minion hello.m4a")
+    elif "banana" in command:
+        play_audio("Minion banana.m4a")
+    elif "food" in command:
+        play_audio("Minion banana.m4a")
+    elif "hungry" in command:
+        play_audio("Minion banana.m4a")
+    elif "minion" in command:
+        play_audio("Minion Ta da.m4a")
+    elif "bottom" in command:
+        play_audio("Minion bottom.m4a")
+    elif "ass" in command:
+        play_audio("Minion bottom.m4a")
+    elif "butt" in command:
+        play_audio("Minion bottom.m4a")
+    elif "fart" in command:
+        play_audio("Minion farting.m4a")
+    elif "smell" in command:
+        play_audio("Minion farting.m4a")
+    elif "funny" in command:
+        play_audio("Minion laughter.m4a")
+    elif "joke" in command:
+        play_audio("Minion laughter.m4a")
+    elif "laughing" in command:
+        play_audio("Minion laughter.m4a")
+    elif "sing" in command:
+        play_audio("Minion singing.m4a")
+    elif "song" in command:
+        play_audio("Minion singing.m4a")
+    elif "music" in command:
+        play_audio("Minion singing.m4a")
+    elif "yay" in command:
+        play_audio("Minion Yay.m4a")
+    elif "yes" in command:
+        play_audio("Minion Yay.m4a")
+    elif "great" in command:
+        play_audio("Minion Yay.m4a")
+    elif "Gru" in command:
+        play_audio("Minion Yay.m4a")
+    elif "beedo" in command:
+        play_audio("Minion Noises 2.m4a")
+    else:
+        print("Unknown command")
+
+# Function to walk forward - using sin and cos waves (smooth motor motion)
+def forward_motion():
     print("\nBeginning forward motion.\n")
     try: 
         # Start motion
@@ -173,10 +241,10 @@ def forward_motion(servos):
     except ServoLogicalError as e:
         print(f"The command is issued while in motor mode or while torque is disabled")
     print("Forward motion complete.\n")
-    time.sleep(3.0)
+    time.sleep(1.0)
 
-# Begin backwards motion
-def backwards_motion(servos):
+# Function to begin backwards motion
+def backward_motion():
     print("Begin backwards motion.\n")
     try: 
         # Start motion
@@ -236,4 +304,28 @@ def backwards_motion(servos):
     except ServoLogicalError as e:
         print(f"The command is issued while in motor mode or while torque is disabled")
     print("Backward motion complete.\n")
-    time.sleep(3.0)
+    time.sleep(1.0)
+
+# Initialize the recognizer
+recognizer = sr.Recognizer()
+
+# Function to listen for voice commands
+def listen_for_commands():
+    with sr.Microphone() as source:
+        print("Listening for commands...\n")
+        recognizer.adjust_for_ambient_noise(source)
+        audio = recognizer.listen(source)
+
+    try:
+        print("Recognizing command...\n")
+        command = recognizer.recognize_google(audio)
+        print("Command:", command)
+        process_command(command)
+    except sr.UnknownValueError:
+        print("\nCould not understand audio")
+    except sr.RequestError as e:
+        print("\nCould not request results; {0}".format(e))
+
+# Main loop
+while True:
+    listen_for_commands()
