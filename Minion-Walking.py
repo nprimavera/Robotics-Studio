@@ -189,7 +189,7 @@ def forward_motion():
 
         while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
             current_time = time.time() - start_time     # current time = time stamp - start time 
-            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion whistle.m4a")
+            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion whistle.wav")
 
             # Move front and back legs
             servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
@@ -253,7 +253,7 @@ def backward_motion():
 
         while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
             current_time = time.time() - start_time     # current time = time stamp - start time 
-            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.m4a")
+            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.wav")
 
             # Move front and back legs
             servo1_angle = 145.68 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
