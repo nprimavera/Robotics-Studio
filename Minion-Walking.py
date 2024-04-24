@@ -131,51 +131,51 @@ def process_command(command):
     elif "backward" in command:
         backward_motion()
     elif "hello" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.wav")
     elif "hi" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.wav")
     elif "greetings" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.wav")
     elif "banana" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.wav")
     elif "food" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.wav")
     elif "hungry" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.wav")
     elif "minion" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.wav")
     elif "bottom" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.wav")
     elif "ass" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.wav")
     elif "butt" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.wav")
     elif "fart" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.wav")
     elif "smell" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.wav")
     elif "funny" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.wav")
     elif "joke" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.wav")
     elif "laughing" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.wav")
     elif "sing" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.wav")
     elif "song" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.wav")
     elif "music" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.wav")
     elif "yay" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.wav")
     elif "yes" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.wav")
     elif "great" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.wav")
     elif "Gru" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.wav")
     elif "beedo" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Noises 2.m4a")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Noises 2.wav")
     else:
         print("Unknown command")
 
