@@ -15,7 +15,7 @@ LX16A.initialize("/dev/ttyUSB0", 0.1)                             #   "    "    
 
 # Set servo IDs
 try:
-    print("\nSetting servo IDs.")
+    print("\nSetting servo motor IDs.")
     servo1 = LX16A(1)   # Front Ankle 
     servo2 = LX16A(2)   # Front Knee
     servo3 = LX16A(3)   # Left Ankle 
@@ -24,13 +24,13 @@ try:
     servo6 = LX16A(6)   # Back Knee
     servo7 = LX16A(7)   # Right Ankle 
     servo8 = LX16A(8)   # Right Knee
-    print("Servo IDs complete.\n")
+    print("Complete.\n")
 except ServoArgumentError as e:
     print(f"Error setting servo IDs. The servo's ID is outside the range 0 - 253 degrees. Exiting...")
     quit()
 
 # Run BOOT TEST
-print("Running boot test for all servos.")
+print("Running boot test for all servo motors.")
 servos = [servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8]
 for servo in servos:
     try:
@@ -46,20 +46,20 @@ for servo in servos:
     except ServoError as e:
         print(f"Error running the boot test. Servo {e.id_} is not responding. Exiting...")
         quit()
-print("Boot test complete.\n")
+print("Complete.\n")
 
 # Set servo angle limits
 try:
-    print("Setting angle limits for each servo.")
+    print("Setting angle limits for each servo motor.")
     servo1.set_angle_limits(0, 240)     # Front Ankle
-    servo2.set_angle_limits(81, 240)    # Front Knee
+    servo2.set_angle_limits(0, 240)     # Front Knee
     servo3.set_angle_limits(0, 240)     # Left Ankle
     servo4.set_angle_limits(0, 240)     # Left Knee
     servo5.set_angle_limits(0, 240)     # Back Ankle
-    servo6.set_angle_limits(138, 240)   # Back Knee
+    servo6.set_angle_limits(0, 240)     # Back Knee
     servo7.set_angle_limits(0, 240)     # Right Ankle
     servo8.set_angle_limits(0, 240)     # Right Knee 
-    print("Angle limits complete.\n")
+    print("Complete.\n")
 except ServoArgumentError as e:
     print(f"Error setting servo angle limits. Servo {e.id_} is not responding. Either limit is out of the range or upper limit is less than lower. Exiting...")
     quit()
@@ -78,12 +78,13 @@ for servo in servos:
                 servo.led_power_off()
                 time.sleep(0.1)
             print(f"Servo {servo.get_id()} is ready.")
+        print("Complete.\n")
     except ServoError as e:
         print(f"Error checking LED error triggers for servo {servo.get_id()}. Exiting...")
         quit()
 
-# Homing proceedure - set angles to home position 
-print("\nSetting servos to home position.")
+# Homing proceedure - set motors to home position 
+print("Setting servo motors to home position.")
 try:
     servo1.move(145.68, 1000)   # setting servos to desired position and waiting 1000 milliseconds 
     servo2.move(115.92, 1000)
@@ -94,11 +95,11 @@ try:
     servo7.move(130.56, 1000)
     servo8.move(122.16, 1000)
     time.sleep(1.0)
+    print("All servos are set and ready for movement.\n")
 except ServoArgumentError as e:
     print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
 except ServoLogicalError as e:
     print(f"The command is issued while in motor mode or while torque is disabled")
-print("All servos are set and ready for movement.\n")
 
 # Print initial angles
 print("Initial angle positions:")
@@ -132,6 +133,8 @@ def process_command(command):
         backward_motion()
     elif "hello" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.wav")
+    elif "minion" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.wav")
     elif "hi" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion hello.wav")
     elif "greetings" in command:
@@ -142,7 +145,7 @@ def process_command(command):
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.wav")
     elif "hungry" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.wav")
-    elif "minion" in command:
+    elif "well done" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.wav")
     elif "bottom" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.wav")
@@ -174,12 +177,61 @@ def process_command(command):
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.wav")
     elif "Gru" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.wav")
+    elif "Despicable Me" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Yay.wav")
     elif "beedo" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Noises 2.wav")
+    elif "Kevin" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Kevin.wav")
+    elif "why" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Why.wav")
+    elif "argh" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Argh.wav")
+    elif "fight" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Fight.wav")
+    elif "angry" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Fight.wav")
+    elif "toy" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Pa poy.wav")
+    elif "boss" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Mini boss.wav")
+    elif "mini boss" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Mini boss.wav")
+    elif "sad" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Cry.wav")
+    elif "cry" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Cry.wav")
+    elif "upset" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Cry.wav")
+    elif "cow" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Moo.wav")
+    elif "moo" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Moo.wav")
+    elif "kung fu" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Kung Fu.wav")
+    elif "smoochy" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Kung Fu.wav")
+    elif "annoying" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/No annoying sounds.wav")
+    elif "hate" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Hate.wav")
+    elif "guy" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Hate.wav")
+    elif "happy" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Happy.wav")
+    elif "fluffy" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Fluffy.wav")
+    elif "bob" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/King Bob.wav")
+    elif "king" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/King Bob.wav")
+    elif "what" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/What.wav")
     else:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/What.wav")
         print("Unknown command")
 
-# Function to walk forward - using sin and cos waves (smooth motor motion)
+# Function to walk forward - using sin and cos waves (smooth motor motion as opposed to direcly calling angles --> triangle waves)
 def forward_motion():
     print("\nBeginning forward motion.\n")
     try: 
@@ -192,34 +244,34 @@ def forward_motion():
             play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion whistle.wav")
 
             # Move front and back legs
-            servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo1.move(servo1_angle, 100)
-            print(f"Servo 1 is at {servo1_angle} degrees.\n")
-            servo2_angle = 115.92 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo2.move(servo2_angle, 100)
-            print(f"Servo 2 is at {servo2_angle} degrees.\n")
-            servo5_angle = 114.52 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo5.move(servo5_angle, 100)
-            print(f"Servo 5 is at {servo5_angle} degrees.\n")
-            servo6_angle = 172.08 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo6.move(servo6_angle, 100)
-            print(f"Servo 6 is at {servo6_angle} degrees.\n")
-            time.sleep(0.1)
+            #servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo1.move(servo1_angle, 100)
+            #print(f"Servo 1 is at {servo1_angle} degrees.\n")
+            #servo2_angle = 115.92 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo2.move(servo2_angle, 100)
+            #print(f"Servo 2 is at {servo2_angle} degrees.\n")
+            #servo5_angle = 114.52 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo5.move(servo5_angle, 100)
+            #print(f"Servo 5 is at {servo5_angle} degrees.\n")
+            #servo6_angle = 172.08 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo6.move(servo6_angle, 100)
+            #print(f"Servo 6 is at {servo6_angle} degrees.\n")
+            #ime.sleep(0.1)
 
             # Move left and right legs 
-            servo3_angle = 141.84 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo3.move(servo3_angle, 100)
-            print(f"Servo 3 is at {servo3_angle} degrees.\n")
-            servo4_angle = 155.52 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo4.move(servo4_angle, 100)
-            print(f"Servo 4 is at {servo4_angle} degrees.\n")
-            servo7_angle = 130.56 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo7.move(servo7_angle, 100)
-            print(f"Servo 7 is at {servo7_angle} degrees.\n")
-            servo8_angle = 122.16 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo8.move(servo8_angle, 100)
-            print(f"Servo 8 is at {servo8_angle} degrees.\n")
-            time.sleep(0.1)                
+            #servo3_angle = 141.84 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo3.move(servo3_angle, 100)
+            #print(f"Servo 3 is at {servo3_angle} degrees.\n")
+            #servo4_angle = 155.52 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo4.move(servo4_angle, 100)
+            #print(f"Servo 4 is at {servo4_angle} degrees.\n")
+            #servo7_angle = 130.56 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo7.move(servo7_angle, 100)
+            #print(f"Servo 7 is at {servo7_angle} degrees.\n")
+            #servo8_angle = 122.16 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
+            #servo8.move(servo8_angle, 100)
+            #print(f"Servo 8 is at {servo8_angle} degrees.\n")
+            #time.sleep(0.1)                
     except ServoArgumentError as e:
         print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
     except ServoLogicalError as e:
@@ -254,36 +306,7 @@ def backward_motion():
         while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
             current_time = time.time() - start_time     # current time = time stamp - start time 
             play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.wav")
-
-            # Move front and back legs
-            servo1_angle = 145.68 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo1.move(servo1_angle, 100)
-            print(f"Servo 1 is at {servo1_angle} degrees.\n")
-            servo2_angle = 115.92 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo2.move(servo2_angle, 100)
-            print(f"Servo 2 is at {servo2_angle} degrees.\n")
-            servo5_angle = 114.52 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo5.move(servo5_angle, 100)
-            print(f"Servo 5 is at {servo5_angle} degrees.\n")
-            servo6_angle = 172.08 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo6.move(servo6_angle, 100)
-            print(f"Servo 6 is at {servo6_angle} degrees.\n")
-            time.sleep(0.1)
-
-            # Move left and right legs 
-            servo3_angle = 141.84 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo3.move(servo3_angle, 100)
-            print(f"Servo 3 is at {servo3_angle} degrees.\n")
-            servo4_angle = 155.52 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo4.move(servo4_angle, 100)
-            print(f"Servo 4 is at {servo4_angle} degrees.\n")
-            servo7_angle = 130.56 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo7.move(servo7_angle, 100)
-            print(f"Servo 7 is at {servo7_angle} degrees.\n")
-            servo8_angle = 122.16 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            servo8.move(servo8_angle, 100)
-            print(f"Servo 8 is at {servo8_angle} degrees.\n")
-            time.sleep(0.1)                
+          
     except ServoArgumentError as e:
         print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
     except ServoLogicalError as e:
@@ -318,7 +341,7 @@ def listen_for_commands():
         audio = recognizer.listen(source)
 
     try:
-        print("Recognizing command...\n")
+        print("Command recognized.\n")
         command = recognizer.recognize_google(audio)
         print("Command:", command)
         process_command(command)
