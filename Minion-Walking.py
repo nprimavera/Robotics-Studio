@@ -52,11 +52,11 @@ print("Complete.\n")
 try:
     print("Setting angle limits for each servo motor.")
     servo1.set_angle_limits(0, 240)     # Front Ankle
-    servo2.set_angle_limits(0, 240)     # Front Knee
+    servo2.set_angle_limits(0, 127)     # Front Knee
     servo3.set_angle_limits(0, 240)     # Left Ankle
     servo4.set_angle_limits(0, 240)     # Left Knee
     servo5.set_angle_limits(0, 240)     # Back Ankle
-    servo6.set_angle_limits(0, 240)     # Back Knee
+    servo6.set_angle_limits(138, 240)   # Back Knee
     servo7.set_angle_limits(0, 240)     # Right Ankle
     servo8.set_angle_limits(0, 240)     # Right Knee 
     print("Complete.\n")
@@ -86,14 +86,14 @@ for servo in servos:
 # Homing proceedure - set motors to home position 
 print("Setting servo motors to home position.")
 try:
-    servo1.move(145.68, 1000)   # setting servos to desired position and waiting 1000 milliseconds 
-    servo2.move(115.92, 1000)
-    servo3.move(141.84, 1000)
-    servo4.move(155.52, 1000)
-    servo5.move(114.52, 1000)
-    servo6.move(172.08, 1000)
+    servo1.move(147.36, 1000)   # setting servos to desired position and waiting 1000 milliseconds (=1sec)
+    servo2.move(88.80, 1000)
+    servo3.move(133.68, 1000)
+    servo4.move(153.84, 1000)
+    servo5.move(115.44, 1000)
+    servo6.move(172.80, 1000)
     servo7.move(130.56, 1000)
-    servo8.move(122.16, 1000)
+    servo8.move(121.20, 1000)
     time.sleep(1.0)
     print("All servos are set and ready for movement.\n")
 except ServoArgumentError as e:
@@ -147,6 +147,12 @@ def process_command(command):
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion banana.wav")
     elif "well done" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.wav")
+    elif "good job" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.wav")
+    elif "ta da" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.wav")
+    elif "good work" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Ta da.wav")
     elif "bottom" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion bottom.wav")
     elif "ass" in command:
@@ -157,13 +163,19 @@ def process_command(command):
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.wav")
     elif "smell" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.wav")
+    elif "rip" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion farting.wav")
     elif "funny" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.wav")
     elif "joke" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.wav")
     elif "laughing" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.wav")
+    elif "haha" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion laughter.wav")
     elif "sing" in command:
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.wav")
+    elif "singing" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.wav")
     elif "song" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion singing.wav")
@@ -182,7 +194,7 @@ def process_command(command):
     elif "beedo" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion Noises 2.wav")
     elif "Kevin" in command:
-        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Kevin.wav")
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Kevin.wav")  # left off here 
     elif "why" in command:
         play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Why.wav")
     elif "argh" in command:
@@ -235,100 +247,22 @@ def process_command(command):
 def forward_motion():
     print("\nBeginning forward motion.\n")
     try: 
-        # Start motion
-        start_time = time.time()    # sets the start time = current timestamp 
-        duration = 5.0              # run the motion for 5 seconds
-
-        while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
-            current_time = time.time() - start_time     # current time = time stamp - start time 
-            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion whistle.wav")
-
-            # Move front and back legs
-            #servo1_angle = 145.68 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo1.move(servo1_angle, 100)
-            #print(f"Servo 1 is at {servo1_angle} degrees.\n")
-            #servo2_angle = 115.92 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo2.move(servo2_angle, 100)
-            #print(f"Servo 2 is at {servo2_angle} degrees.\n")
-            #servo5_angle = 114.52 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo5.move(servo5_angle, 100)
-            #print(f"Servo 5 is at {servo5_angle} degrees.\n")
-            #servo6_angle = 172.08 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo6.move(servo6_angle, 100)
-            #print(f"Servo 6 is at {servo6_angle} degrees.\n")
-            #ime.sleep(0.1)
-
-            # Move left and right legs 
-            #servo3_angle = 141.84 + (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo3.move(servo3_angle, 100)
-            #print(f"Servo 3 is at {servo3_angle} degrees.\n")
-            #servo4_angle = 155.52 + (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo4.move(servo4_angle, 100)
-            #print(f"Servo 4 is at {servo4_angle} degrees.\n")
-            #servo7_angle = 130.56 - (20 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo7.move(servo7_angle, 100)
-            #print(f"Servo 7 is at {servo7_angle} degrees.\n")
-            #servo8_angle = 122.16 - (15 * math.sin((2 * math.pi / 1) * current_time + 0))
-            #servo8.move(servo8_angle, 100)
-            #print(f"Servo 8 is at {servo8_angle} degrees.\n")
-            #time.sleep(0.1)                
+        play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion whistle.wav")
     except ServoArgumentError as e:
         print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
     except ServoLogicalError as e:
         print(f"The command is issued while in motor mode or while torque is disabled")
-
-    # Set servos back home 
-    try:
-        servo1.move(145.68, 100)   
-        servo2.move(115.92, 100)
-        servo3.move(141.84, 100)
-        servo4.move(155.52, 100)
-        servo5.move(114.52, 100)
-        servo6.move(172.08, 100)
-        servo7.move(130.56, 100)
-        servo8.move(122.16, 100)
-        time.sleep(1.0)
-    except ServoArgumentError as e:
-        print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
-    except ServoLogicalError as e:
-        print(f"The command is issued while in motor mode or while torque is disabled")
-    print("Forward motion complete.\n")
-    time.sleep(1.0)
+        
 
 # Function to begin backwards motion
 def backward_motion():
     print("Begin backwards motion.\n")
-    try: 
-        # Start motion
-        start_time = time.time()    # sets the start time = current timestamp 
-        duration = 5.0              # run the motion for 5 seconds
-
-        while time.time() - start_time < duration:      # while the current time stamp - start time is less than 5 seconds, run the code
-            current_time = time.time() - start_time     # current time = time stamp - start time 
-            play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.wav")
-          
+    try:    
+       play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.wav")
     except ServoArgumentError as e:
         print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
     except ServoLogicalError as e:
         print(f"The command is issued while in motor mode or while torque is disabled")
-
-    # Set servos back home 
-    try:
-        servo1.move(145.68, 100)   
-        servo2.move(115.92, 100)
-        servo3.move(141.84, 100)
-        servo4.move(155.52, 100)
-        servo5.move(114.52, 100)
-        servo6.move(172.08, 100)
-        servo7.move(130.56, 100)
-        servo8.move(122.16, 100)
-        time.sleep(1.0)
-    except ServoArgumentError as e:
-        print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
-    except ServoLogicalError as e:
-        print(f"The command is issued while in motor mode or while torque is disabled")
-    print("Backward motion complete.\n")
-    time.sleep(1.0)
 
 # Initialize the recognizer
 recognizer = sr.Recognizer()
