@@ -291,7 +291,7 @@ def forward_motion():
             servo6_angle1 = 172.80 + (20 * math.sin((2 * math.pi / 1) * servo6_angle1_time + math.pi))
             servo6.move(servo6_angle1, 100)
             print(f"Servo 6 is at {servo6_angle1} degrees.")
-            time.sleep(0.1)
+            time.sleep(0.5)
             
             # Move left and right legs from start to point 1 
             servo3_angle1_time = 0.1106269359588623
@@ -310,7 +310,7 @@ def forward_motion():
             servo8_angle1 = 121.20 + (20 * math.sin((2 * math.pi / 1) * servo8_angle1_time + 0))
             servo8.move(servo8_angle1, 100) 
             print(f"Servo 8 is at {servo8_angle1} degrees.")  
-            time.sleep(0.25)
+            time.sleep(0.5)
 
             print(f"Servos moved from home to point 1.\n")
 
@@ -331,7 +331,7 @@ def forward_motion():
             servo6_angle2 = 172.80 + (20 * math.sin((2 * math.pi / 1) * servo6_angle2_time + math.pi))
             servo6.move(servo6_angle2, 100)
             print(f"Servo 6 is at {servo6_angle2} degrees.")
-            time.sleep(0.25)
+            time.sleep(0.5)
             
             # Move left and right legs from point 1 to point 2 
             servo3_angle2_time = 0.27266383171081543
@@ -350,7 +350,7 @@ def forward_motion():
             servo8_angle2 = 121.20 + (20 * math.sin((2 * math.pi / 1) * servo8_angle2_time + 0))
             servo8.move(servo8_angle2, 100) 
             print(f"Servo 8 is at {servo8_angle2} degrees.")  
-            time.sleep(0.25)
+            time.sleep(0.5)
 
             print(f"Servos moved from point 1 to point 2.\n")
 
@@ -371,7 +371,7 @@ def forward_motion():
             servo6_angle3 = 172.80 + (20 * math.sin((2 * math.pi / 1) * servo6_angle3_time + math.pi))
             servo6.move(servo6_angle3, 100)
             print(f"Servo 6 is at {servo6_angle3} degrees.")
-            time.sleep(0.25)
+            time.sleep(0.5)
             
             # Move left and right legs from point 2 to point 3 
             servo3_angle3_time = 0.4369039535522461
@@ -390,7 +390,7 @@ def forward_motion():
             servo8_angle3 = 121.20 + (20 * math.sin((2 * math.pi / 1) * servo8_angle3_time + 0))
             servo8.move(servo8_angle3, 100) 
             print(f"Servo 8 is at {servo8_angle3} degrees.")  
-            time.sleep(0.25)
+            time.sleep(0.5)
 
             print(f"Servos moved from point 2 to point 3.\n")
             
@@ -411,7 +411,7 @@ def forward_motion():
             servo6_angle4 = 172.80 + (20 * math.sin((2 * math.pi / 1) * servo6_angle4_time + math.pi))
             servo6.move(servo6_angle4, 100)
             print(f"Servo 6 is at {servo6_angle4} degrees.")
-            time.sleep(0.25)
+            time.sleep(0.5)
             
             # Move left and right legs from point 3 to point 4
             servo3_angle4_time = 0.5945649147033691
@@ -430,7 +430,7 @@ def forward_motion():
             servo8_angle4 = 121.20 + (20 * math.sin((2 * math.pi / 1) * servo8_angle4_time + 0))
             servo8.move(servo8_angle4, 100) 
             print(f"Servo 8 is at {servo8_angle4} degrees.")  
-            time.sleep(0.25)
+            time.sleep(0.5)
 
             print(f"Servos moved from point 3 to point 4.\n")
 
@@ -451,7 +451,7 @@ def forward_motion():
             servo6_angle5 = 172.80 + (20 * math.sin((2 * math.pi / 1) * servo6_angle5_time + math.pi))
             servo6.move(servo6_angle5, 100)
             print(f"Servo 6 is at {servo6_angle5} degrees.")
-            time.sleep(0.25)
+            time.sleep(0.5)
             
             # Move left and right legs from point 4 to point 5
             servo3_angle5_time = 0.7569999694824219
@@ -470,7 +470,7 @@ def forward_motion():
             servo8_angle5 = 121.20 + (20 * math.sin((2 * math.pi / 1) * servo8_angle5_time + 0))
             servo8.move(servo8_angle5, 100) 
             print(f"Servo 8 is at {servo8_angle5} degrees.")  
-            time.sleep(0.25)
+            time.sleep(0.5)
 
             print(f"Servos moved from point 4 to point 5.\n")
 
@@ -491,7 +491,7 @@ def forward_motion():
             servo6_angle6 = 172.80 + (20 * math.sin((2 * math.pi / 1) * servo6_angle6_time + math.pi))
             servo6.move(servo6_angle6, 100)
             print(f"Servo 6 is at {servo6_angle6} degrees.")
-            time.sleep(0.25)
+            time.sleep(0.5)
             
             # Move left and right legs from point 5 to point 6
             servo3_angle6_time = 0.9208850860595703
@@ -510,7 +510,7 @@ def forward_motion():
             servo8_angle6 = 121.20 + (20 * math.sin((2 * math.pi / 1) * servo8_angle6_time + 0))
             servo8.move(servo8_angle6, 100) 
             print(f"Servo 8 is at {servo8_angle6} degrees.")  
-            time.sleep(0.25)
+            time.sleep(0.5)
 
             print(f"Servos moved from point 5 to point 6.\n")
 
@@ -531,7 +531,7 @@ def forward_motion():
             servo6_angle7 = 172.80 + (20 * math.sin((2 * math.pi / 1) * servo6_angle7_time + math.pi))
             servo6.move(servo6_angle7, 100)
             print(f"Servo 6 is at {servo6_angle7} degrees.")
-            time.sleep(0.25)
+            time.sleep(0.5)
             
             # Move left and right legs from point 6 to home
             servo3_angle7_time = 0.00019311904907226562
@@ -550,7 +550,7 @@ def forward_motion():
             servo8_angle7 = 121.20 + (20 * math.sin((2 * math.pi / 1) * servo8_angle7_time + 0))
             servo8.move(servo8_angle7, 100) 
             print(f"Servo 8 is at {servo8_angle7} degrees.")  
-            time.sleep(0.25)
+            time.sleep(0.5)
 
             print(f"Servos moved from point 6 back home.\n")
 
