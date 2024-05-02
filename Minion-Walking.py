@@ -4,6 +4,7 @@ import math
 import time
 import speech_recognition as sr
 import pygame
+import pyaudio
 
 from lx16a import *
 from math import sin, cos, pi
@@ -277,7 +278,7 @@ def process_command(command):
 def forward_motion():
     print("\nBeginning forward motion.\n")
     try: 
-        for _ in range(1):
+        for _ in range(3):
             play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion whistle.wav")
 
             # Move front and back legs from start to point 1 - knee moving to max, ankle moving to min
@@ -585,7 +586,10 @@ def forward_motion():
 def backward_motion():
     print("Begin backwards motion.\n")
     try:    
-       play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.wav")
+       for _ in range(3):
+           
+           play_audio("/home/nprimavera/Desktop/PyLX-16A-master/Minion noises/Minion YMCA.wav")
+
     except ServoArgumentError as e:
         print(f"Servo {e.id_} is outside the range 0 - 240 degrees or outside the range set by LX16A.set_angle_limits")
     except ServoLogicalError as e:
@@ -599,11 +603,13 @@ def listen_for_commands():
     with sr.Microphone() as source:
         print("Listening for commands...\n")
         recognizer.adjust_for_ambient_noise(source)
-        audio = recognizer.listen(source)
+        
+        # Use pyaudio for more control over audio stream
+        audio_stream = recognizer.listen(source, timeout=20)  # Timeout set to 20 seconds
 
     try:
         print("Command recognized.\n")
-        command = recognizer.recognize_google(audio)
+        command = recognizer.recognize_google(audio_stream)
         print("Command:", command)
         process_command(command)
     except sr.UnknownValueError:
@@ -611,6 +617,25 @@ def listen_for_commands():
     except sr.RequestError as e:
         print("\nCould not request results; {0}".format(e))
 
+# Function to detect audio activity (e.g., noise)
+def detect_audio_activity():
+    with sr.Microphone() as source:
+        print("Listening for audio activity...\n")
+        recognizer.adjust_for_ambient_noise(source)
+        
+        # Use pyaudio to stream audio and detect noise
+        audio_stream = source.stream
+        audio_data = audio_stream.read(1024)  # Read a chunk of audio data
+        audio_level = max(audio_data)  # Check the maximum audio level in the chunk
+
+        # If audio level exceeds a certain threshold, wake up
+        if audio_level > 50:
+            print("Audio activity detected.")
+            return True
+        else:
+            return False
+
 # Main loop
 while True:
-    listen_for_commands()
+    if detect_audio_activity():
+        listen_for_commands()
